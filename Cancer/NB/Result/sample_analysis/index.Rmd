@@ -1,0 +1,400 @@
+---
+title: 'CAMDA 2018: Cancer Data Integration Challenge'
+subtitle: '--- **Neuroblastoma: sample analysis** ---'
+author: "`r if (exists('yml')) yml$analyst else 'Jim Zhang'`"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    self_contained: no
+    number_sections: no
+    toc: yes
+---
+
+```{r global_setup, eval=TRUE, include=FALSE}
+## Default knitr parameters
+knitr::opts_chunk$set(dpi=300, dev=c('png', 'pdf'), echo=FALSE, warning=FALSE, message=FALSE);
+
+require(rmarkdown);
+require(knitr); 
+require(awsomics);
+require(VennDiagram);
+```
+
+# Clinical information
+
+<div align='center'>
+```{r clinical_info, include=TRUE, fig.width=10, fig.height=4, out.width='1000px'}
+cl <- readRDS('../../R/clinical.rds'); 
+
+cnm <- c("Country", "INSS Stage", "HighRisk", "MYCN status", "Sex_Imputed", 
+         "Training/Validation set", "Class label", "EFS_bin", "OS_bin", 
+         "clinico genetic subgroup");
+cnm <- sort(cnm);
+
+par(mfrow=c(2, 5)); 
+for (i in 1:length(cnm)) pie(table(cl[, cnm[i]]), col=rainbow(length(unique(cl[, cnm[i]]))),
+                             main=cnm[i]); 
+```
+</div>
+
+<div style="color:darkblue; padding:0 1cm">
+**Figure 1A.** Clinical characteristics of the 498 neuroblastoma patients.
+</div>
+
+<div align='center'>
+```{r clinical_age, include=TRUE, fig.width=6.4, fig.height=4, out.width='640px'}
+par(mar=c(4,5,2,2));
+hist(as.numeric(cl[, 'Age']), br=100, xlab='', ylab='Number of patients', main='Age');
+```
+</div>
+
+<div style="color:darkblue; padding:0 3cm">
+**Figure 1B.** Clinical characteristics of the 498 neuroblastoma patients: Age distribution.
+</div>
+
+# Expression
+
+## PCA 
+
+### GSE49711/RNA-seq {.tabset}
+
+```{r PCA_GSE49711, eval=FALSE, include=FALSE}
+dir.create('PCA', showWarnings = FALSE);
+e1 <- readRDS('../../R/expression/GSE49711/expr_gene.rds')[, rownames(cl)];
+pr <- prcomp(t(e1)); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE49711_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[, nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+```
+
+```{r PCA_GSE49711_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE49711', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 2A.** PCA plots of the same 498 NB tumors, using data from [GSE49711](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE49711).
+</div>
+
+### GSE62564/RNA-seq {.tabset}
+
+```{r PCA_GSE62564, eval=FALSE, include=FALSE}
+e2 <- readRDS('../../R/expression/GSE62564/expr.rds')[, rownames(cl)];
+pr <- prcomp(t(e2)); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE62564_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[, nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+lns <- paste(paste('####', cnm), '\n\n', 
+             paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+```{r PCA_GSE62564_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE62564', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 2B.** PCA plots of the same 498 NB tumors, using data form [GSE62564](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62564).
+</div>
+
+### GSE49710/Microarray {.tabset}
+
+```{r PCA_GSE49710, eval=FALSE, include=FALSE}
+e3 <- readRDS('../../R/expression/GSE49710/expr.rds')[, rownames(cl)];
+pr <- prcomp(t(e3)); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE49710_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[, nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+```
+
+```{r PCA_GSE49710_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE49710', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 2C.** PCA plots of the same 498 NB tumors, using data from [GSE49710](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE49710).
+</div>
+
+# CNV
+
+## GEO series and platforms
+
+```{r cnv, include=FALSE}
+cnv <- readRDS('../../R/aCGH/cnv_all.rds');
+gse <- sapply(strsplit(names(cnv), '_'), function(x) x[1]); 
+plt <- sapply(strsplit(names(cnv), '_'), function(x) x[2]);
+plt[plt=='GPL16865'] <- 'GPL2879';
+
+x <- rep(gse, lapply(cnv, ncol));
+y <- rep(plt, lapply(cnv, ncol));
+z <- xtabs(~x+y);
+z <- as.matrix(z);
+
+m <- readRDS('../../R/aCGH/cnv_meta.rds');
+```
+
+<div style="color:darkblue; padding:0 4cm">
+**Table 1** Summary of CNV platforms and series.
+</div>
+
+<div align='center', style="padding:0 4cm">
+`r kable(m, row.names=FALSE)`
+</div>
+
+<div style="color:darkblue; padding:0 5cm">
+**Table 2** Numbers of NB tumors measured by CNV platforms and series. 
+</div>
+
+<div align='center', style="padding:0 6cm">
+`r kable(z)`
+</div>
+
+<div align='center'>
+```{r cnv_series, include=TRUE, fig.height=3.2, fig.width=4.8, out.width='480px'}
+tid <- lapply(unique(gse), function(g) lapply(cnv[gse==g], colnames));
+tid <- lapply(tid, unlist);
+tid <- lapply(tid, as.vector);
+tid <- lapply(tid, unique); 
+num0 <- sapply(tid, length); 
+
+ind1 <- t(combn(1:4, 2));
+num1 <- apply(ind1, 1, function(i) length(Reduce('intersect', tid[i]))); 
+
+ind2 <- lapply(4:1, function(i) (1:4)[-i]); 
+num2 <- sapply(ind2, function(i) length(Reduce('intersect', tid[i]))); 
+
+num3 <- length(Reduce('intersect', tid));
+
+par1 <- as.list(c(num0, num1, num2, num3));
+par1$category <- unique(gse);
+par1$fill <- rainbow(length(unique(gse)));
+
+par(mfrow=c(1, 2)); 
+do.call('draw.quad.venn', par1) -> x; 
+```
+</div>
+
+<div style="color:darkblue; padding:0 5cm">
+**Figure 3A.** Overlapping of CNV samples measured by GEO series.
+</div>
+
+<div align='center'>
+```{r cnv_platform, include=TRUE, fig.height=3.2, fig.width=4.8, out.width='480px'}
+tid <- lapply(unique(plt), function(g) lapply(cnv[plt==g], colnames));
+tid <- lapply(tid, unlist);
+tid <- lapply(tid, as.vector);
+tid <- lapply(tid, unique); 
+num0 <- sapply(tid, length); 
+
+ind1 <- t(combn(1:4, 2));
+num1 <- apply(ind1, 1, function(i) length(Reduce('intersect', tid[i]))); 
+
+ind2 <- lapply(4:1, function(i) (1:4)[-i]); 
+num2 <- sapply(ind2, function(i) length(Reduce('intersect', tid[i]))); 
+
+num3 <- length(Reduce('intersect', tid));
+
+par2 <- as.list(c(num0, num1, num2, num3));
+par2$category <- unique(plt);
+par2$fill <- rainbow(length(unique(plt)));
+
+do.call('draw.quad.venn', par2) -> x; 
+```
+</div>
+
+<div style="color:darkblue; padding:0 5cm">
+**Figure 3B.** Overlapping of CNV samples measured by GEO platforms.
+</div>
+
+
+## PCA
+
+### GSE45480_GPL4093 {.tabset}
+
+```{r PCA_GSE45480_GPL4093, eval=FALSE, include=FALSE}
+c1 <- cnv[['GSE45480_GPL4093']];
+pr <- prcomp(t(c1)); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE45480_GPL4093_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[colnames(c1), nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+```
+
+```{r PCA_GSE45480_GPL4093_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE45480_GPL4093', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 4A.** PCA plots of `r ncol(cnv[['GSE45480_GPL4093']])` NB tumors, using data from GEO series GSE45480 on platform GPL4093.
+</div>
+
+### GSE45480_GPL2873 {.tabset}
+
+```{r PCA_GSE45480_GPL2873, eval=FALSE, include=FALSE}
+c2 <- cnv[['GSE45480_GPL2873']];
+pr <- prcomp(t(c2)); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE45480_GPL2873_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[colnames(c2), nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+```
+
+```{r PCA_GSE45480_GPL2873_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE45480_GPL2873', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 4B.** PCA plots of `r ncol(cnv[['GSE45480_GPL2873']])` NB tumors, using data from GEO series GSE45480 on platform GPL4093.
+</div>
+
+### GSE25771_GPL2873 {.tabset}
+
+```{r PCA_GSE25771_GPL2873, eval=FALSE, include=FALSE}
+c3 <- cnv[['GSE25771_GPL2873']];
+pr <- prcomp(t(c3[!is.na(rowMeans(c3)), ])); 
+
+fns <- sapply(cnm, function(nm) { 
+  print(nm);
+  fn <- paste('PCA/GSE25771_GPL2873_', gsub('[ /]', '', nm), '.png', sep='');
+  png(fn, w=1200, h=900); 
+  cex <- 2.5;
+  c <- cl[colnames(c3), nm]; 
+  c[is.na(c) | c==''] <- 'Not available';
+  col <- rainbow(length(unique(c))); 
+  col[col=='#FFFF00FF'] <- '#EEEE00FF'; 
+  col <- sub('FF$', 'DD', col); 
+  names(col) <- unique(c); 
+  col <- col[as.character(c)]; 
+  PlotPCA(pr, groups=c, new.window = FALSE, cex=cex, col=col, legend=TRUE); 
+  if (dev.cur()!=1) dev.off(); 
+  fn; 
+}); 
+```
+
+```{r PCA_GSE25771_GPL2873_out, include=FALSE}
+f <- dir("PCA");
+fns <- paste('PCA', f[grep('GSE25771_GPL2873', f)], sep='/');
+lns <- paste(paste('####', cnm), '\n\n', paste('![](', fns, ')', sep=''), '\n\n', collapse='');
+```
+
+`r lns`
+
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 4B.** PCA plots of `r ncol(cnv[['GSE25771_GPL2873']])` NB tumors, using data from GEO series GSE25771 on platform GPL2873.
+</div>
+
+
+
+## Data distribution
+
+<div align='center'>
+```{r, cnv_dist, include=TRUE, fig.width=20, fig.height=12, out.width='1000px'}
+cnt <- lapply(cnv, function(c) table(round(as.vector(c), 2)));
+
+par(mfrow=c(2, 5), mar=c(5,5,3,2)); 
+for (i in 1:length(cnt)) {
+  x <- cnt[[i]]; 
+  plot(as.numeric(names(x)), as.integer(x), type='h', log='y', col='#88888888', 
+       xlab="CNV measurements", ylab="Number of calls", main=names(cnt)[i]);
+}; 
+```
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+**Figure 5.** Distribution of CNV measurements, by GEO series and platforms. 
+</div>
+
+# Session information
+
+```{r session_info, echo=FALSE}
+sessionInfo(); 
+```
+
+***
+_END OF DOCUMENT_
+

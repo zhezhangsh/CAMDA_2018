@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Jim Zhang" />
+
+<meta name="date" content="2018-01-08" />
+
+<title>CAMDA 2018: Cancer Data Integration Challenge</title>
+
+<script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="index_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="index_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="index_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="index_files/navigation-1.1/tabsets.js"></script>
+<link href="index_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="index_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">CAMDA 2018: Cancer Data Integration Challenge</h1>
+<h3 class="subtitle"><em>— <strong>Neuroblastoma: sample analysis</strong> —</em></h3>
+<h4 class="author"><em>Jim Zhang</em></h4>
+<h4 class="date"><em>2018-01-08</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#clinical-information">Clinical information</a></li>
+<li><a href="#expression">Expression</a><ul>
+<li><a href="#pca">PCA</a><ul>
+<li><a href="#gse49711rna-seq">GSE49711/RNA-seq</a></li>
+<li><a href="#gse62564rna-seq">GSE62564/RNA-seq</a></li>
+<li><a href="#gse49710microarray">GSE49710/Microarray</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#cnv">CNV</a><ul>
+<li><a href="#geo-series-and-platforms">GEO series and platforms</a></li>
+<li><a href="#pca-1">PCA</a><ul>
+<li><a href="#gse45480_gpl4093">GSE45480_GPL4093</a></li>
+<li><a href="#gse45480_gpl2873">GSE45480_GPL2873</a></li>
+<li><a href="#gse25771_gpl2873">GSE25771_GPL2873</a></li>
+</ul></li>
+<li><a href="#data-distribution">Data distribution</a></li>
+</ul></li>
+<li><a href="#session-information">Session information</a></li>
+</ul>
+</div>
+
+<div id="clinical-information" class="section level1">
+<h1>Clinical information</h1>
+<div align="center">
+<p><img src="index_files/figure-html/clinical_info-1.png" width="1000px" /></p>
+</div>
+<div style="color:darkblue; padding:0 1cm">
+<p><strong>Figure 1A.</strong> Clinical characteristics of the 498 neuroblastoma patients.</p>
+</div>
+<div align="center">
+<p><img src="index_files/figure-html/clinical_age-1.png" width="640px" /></p>
+</div>
+<div style="color:darkblue; padding:0 3cm">
+<p><strong>Figure 1B.</strong> Clinical characteristics of the 498 neuroblastoma patients: Age distribution.</p>
+</div>
+</div>
+<div id="expression" class="section level1">
+<h1>Expression</h1>
+<div id="pca" class="section level2">
+<h2>PCA</h2>
+<div id="gse49711rna-seq" class="section level3 tabset">
+<h3>GSE49711/RNA-seq</h3>
+<div id="class-label" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE49711_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE49711_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE49711_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE49711_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE49711_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE49711_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE49711_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE49711_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE49711_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE49711_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 2A.</strong> PCA plots of the same 498 NB tumors, using data from <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE49711">GSE49711</a>.</p>
+</div>
+</div>
+</div>
+<div id="gse62564rna-seq" class="section level3 tabset">
+<h3>GSE62564/RNA-seq</h3>
+<div id="class-label-1" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE62564_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup-1" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE62564_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country-1" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE62564_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin-1" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE62564_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk-1" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE62564_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage-1" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE62564_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status-1" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE62564_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin-1" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE62564_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed-1" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE62564_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set-1" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE62564_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 2B.</strong> PCA plots of the same 498 NB tumors, using data form <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62564">GSE62564</a>.</p>
+</div>
+</div>
+</div>
+<div id="gse49710microarray" class="section level3 tabset">
+<h3>GSE49710/Microarray</h3>
+<div id="class-label-2" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE49710_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup-2" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE49710_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country-2" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE49710_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin-2" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE49710_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk-2" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE49710_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage-2" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE49710_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status-2" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE49710_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin-2" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE49710_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed-2" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE49710_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set-2" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE49710_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 2C.</strong> PCA plots of the same 498 NB tumors, using data from <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE49710">GSE49710</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="cnv" class="section level1">
+<h1>CNV</h1>
+<div id="geo-series-and-platforms" class="section level2">
+<h2>GEO series and platforms</h2>
+<div style="color:darkblue; padding:0 4cm">
+<p><strong>Table 1</strong> Summary of CNV platforms and series.</p>
+</div>
+<div align="center" ,="" style="padding:0 4cm">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Series</th>
+<th align="left">Platform</th>
+<th align="right">N_Region</th>
+<th align="right">N_Tumor</th>
+<th align="left">Microarray</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">GSE25771</td>
+<td align="left">GPL2873</td>
+<td align="right">43195</td>
+<td align="right">23</td>
+<td align="left">Agilent-012750 44A (G4410A)</td>
+</tr>
+<tr class="even">
+<td align="left">GSE25771</td>
+<td align="left">GPL2879</td>
+<td align="right">43890</td>
+<td align="right">2</td>
+<td align="left">Agilent-013282 44B (G4410B)</td>
+</tr>
+<tr class="odd">
+<td align="left">GSE25771</td>
+<td align="left">GPL4093</td>
+<td align="right">104702</td>
+<td align="right">17</td>
+<td align="left">Agilent-014698 105A (G4412A)</td>
+</tr>
+<tr class="even">
+<td align="left">GSE35953</td>
+<td align="left">GPL2873</td>
+<td align="right">43195</td>
+<td align="right">6</td>
+<td align="left">Agilent-012750 44A (G4410A)</td>
+</tr>
+<tr class="odd">
+<td align="left">GSE45480</td>
+<td align="left">GPL16865</td>
+<td align="right">43890</td>
+<td align="right">11</td>
+<td align="left">Agilent-013282 44B (ALT to GPL2879)</td>
+</tr>
+<tr class="even">
+<td align="left">GSE45480</td>
+<td align="left">GPL2873</td>
+<td align="right">42633</td>
+<td align="right">49</td>
+<td align="left">Agilent-012750 44A (G4410A)</td>
+</tr>
+<tr class="odd">
+<td align="left">GSE45480</td>
+<td align="left">GPL4093</td>
+<td align="right">104702</td>
+<td align="right">66</td>
+<td align="left">Agilent-014698 105A (G4412A)</td>
+</tr>
+<tr class="even">
+<td align="left">GSE45480</td>
+<td align="left">GPL8355</td>
+<td align="right">42603</td>
+<td align="right">3</td>
+<td align="left">Agilent-012700 44A (G4410A_beta)</td>
+</tr>
+<tr class="odd">
+<td align="left">GSE56109</td>
+<td align="left">GPL2873</td>
+<td align="right">42633</td>
+<td align="right">4</td>
+<td align="left">Agilent-012750 44A (G4410A)</td>
+</tr>
+<tr class="even">
+<td align="left">GSE56109</td>
+<td align="left">GPL4093</td>
+<td align="right">104702</td>
+<td align="right">8</td>
+<td align="left">Agilent-014698 105A (G4412A)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="color:darkblue; padding:0 5cm">
+<p><strong>Table 2</strong> Numbers of NB tumors measured by CNV platforms and series.</p>
+</div>
+<div align="center" ,="" style="padding:0 6cm">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">GPL2873</th>
+<th align="right">GPL2879</th>
+<th align="right">GPL4093</th>
+<th align="right">GPL8355</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GSE25771</td>
+<td align="right">23</td>
+<td align="right">2</td>
+<td align="right">17</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>GSE35953</td>
+<td align="right">6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>GSE45480</td>
+<td align="right">49</td>
+<td align="right">11</td>
+<td align="right">66</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td>GSE56109</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">8</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div align="center">
+<p><img src="index_files/figure-html/cnv_series-1.png" width="480px" /></p>
+</div>
+<div style="color:darkblue; padding:0 5cm">
+<p><strong>Figure 3A.</strong> Overlapping of CNV samples measured by GEO series.</p>
+</div>
+<div align="center">
+<p><img src="index_files/figure-html/cnv_platform-1.png" width="480px" /></p>
+</div>
+<div style="color:darkblue; padding:0 5cm">
+<p><strong>Figure 3B.</strong> Overlapping of CNV samples measured by GEO platforms.</p>
+</div>
+</div>
+<div id="pca-1" class="section level2">
+<h2>PCA</h2>
+<div id="gse45480_gpl4093" class="section level3 tabset">
+<h3>GSE45480_GPL4093</h3>
+<div id="class-label-3" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup-3" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country-3" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin-3" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk-3" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage-3" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status-3" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin-3" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed-3" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set-3" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL4093_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 4A.</strong> PCA plots of 66 NB tumors, using data from GEO series GSE45480 on platform GPL4093.</p>
+</div>
+</div>
+</div>
+<div id="gse45480_gpl2873" class="section level3 tabset">
+<h3>GSE45480_GPL2873</h3>
+<div id="class-label-4" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup-4" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country-4" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin-4" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk-4" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage-4" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status-4" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin-4" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed-4" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set-4" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE45480_GPL2873_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 4B.</strong> PCA plots of 49 NB tumors, using data from GEO series GSE45480 on platform GPL4093.</p>
+</div>
+</div>
+</div>
+<div id="gse25771_gpl2873" class="section level3 tabset">
+<h3>GSE25771_GPL2873</h3>
+<div id="class-label-5" class="section level4">
+<h4>Class label</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_Classlabel.png" />
+
+</div>
+</div>
+<div id="clinico-genetic-subgroup-5" class="section level4">
+<h4>clinico genetic subgroup</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_clinicogeneticsubgroup.png" />
+
+</div>
+</div>
+<div id="country-5" class="section level4">
+<h4>Country</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_Country.png" />
+
+</div>
+</div>
+<div id="efs_bin-5" class="section level4">
+<h4>EFS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_EFS_bin.png" />
+
+</div>
+</div>
+<div id="highrisk-5" class="section level4">
+<h4>HighRisk</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_HighRisk.png" />
+
+</div>
+</div>
+<div id="inss-stage-5" class="section level4">
+<h4>INSS Stage</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_INSSStage.png" />
+
+</div>
+</div>
+<div id="mycn-status-5" class="section level4">
+<h4>MYCN status</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_MYCNstatus.png" />
+
+</div>
+</div>
+<div id="os_bin-5" class="section level4">
+<h4>OS_bin</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_OS_bin.png" />
+
+</div>
+</div>
+<div id="sex_imputed-5" class="section level4">
+<h4>Sex_Imputed</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_Sex_Imputed.png" />
+
+</div>
+</div>
+<div id="trainingvalidation-set-5" class="section level4">
+<h4>Training/Validation set</h4>
+<div class="figure">
+<img src="PCA/GSE25771_GPL2873_TrainingValidationset.png" />
+
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 4B.</strong> PCA plots of 23 NB tumors, using data from GEO series GSE25771 on platform GPL2873.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="data-distribution" class="section level2">
+<h2>Data distribution</h2>
+<div align="center">
+<p><img src="index_files/figure-html/cnv_dist-1.png" width="1000px" /></p>
+</div>
+<div style="color:darkblue; padding:0 0.5cm">
+<p><strong>Figure 5.</strong> Distribution of CNV measurements, by GEO series and platforms.</p>
+</div>
+</div>
+</div>
+<div id="session-information" class="section level1">
+<h1>Session information</h1>
+<pre><code>## R version 3.2.2 (2015-08-14)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: OS X 10.10.5 (Yosemite)
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] VennDiagram_1.6.17  futile.logger_1.4.3 awsomics_0.0.0.9000
+## [4] RCurl_1.95-4.8      bitops_1.0-6        devtools_1.13.4    
+## [7] knitr_1.17          rmarkdown_1.3      
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.13         digest_0.6.12        withr_2.1.0         
+##  [4] rprojroot_1.2        futile.options_1.0.0 backports_1.1.1     
+##  [7] magrittr_1.5         evaluate_0.10.1      highr_0.6           
+## [10] stringi_1.1.1        lambda.r_1.1.9       tools_3.2.2         
+## [13] stringr_1.2.0        yaml_2.1.13          memoise_1.1.0       
+## [16] htmltools_0.3.6</code></pre>
+<hr />
+<p><em>END OF DOCUMENT</em></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
