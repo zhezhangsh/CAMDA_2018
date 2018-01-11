@@ -1,7 +1,3 @@
----
-title: "CAMDA challenges, 2018"
----
-
 # CAMDA_2018
 
 
@@ -23,6 +19,8 @@ Use the following method to download raw and processed data:
 
 ## CMap Drug safety 
 
+### Introduction
+
   - Predict drug-induced liver injury (DILI)
   - 276 drug compounds
     - 190 for training: 130 positive + 60 negative
@@ -38,7 +36,25 @@ Use the following method to download raw and processed data:
   - Identification/interpretation of difference between cell lines
   - Option to participate an FDA meta-analysis paper
 
+### Data
+
+The .CEL files of Affymetrix microarrays of 2 different cell lines were processed separately as described [here](https://github.com/zhezhangsh/MyMethods/blob/master/microarray_affymatrix_typical.md). Most compounds used HT_HG-U133A array platform, but small number of training compounds used HG-U133A. Sample analysis showed that data from different platforms are not directly comparable. As a result, 10 compounds were removed from the training data, and there will be **180** total training compounds: (**120** positive + **60** negative), and **86** validation compounds.
+  
+***Download:***
+
+  - Processed microarray data matrix of 582 samples from MCF7 cells: [download]().
+  - Processed microarray data matrix of 475 samples from PC3 cells: [download]().
+  - Annotation of 12,080 NCBI Entrez genes: [download]().
+  - Annotation of 266 compounds: [download]().
+  - Annotation of 582 MCF7 .CEL files: [view]() or [download]().
+  - Annotation of 475 PC3 .CEL files: [view]() or [download]().
+  - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view]()
+  
+### Results
+
 ## Cancer Data Integration 
+
+### Introduction
 
   - Breast Cancer (Re-analyze METABRIC data):
     - 5 subtypes
@@ -61,4 +77,11 @@ Use the following method to download raw and processed data:
     - Better prediction of survival via integration analysis
     - Understand progression or therapy response better
     - Improve cancer subgrouping
+
+### Data
+
+
+### Results
+
+#### Sample analysis
 
