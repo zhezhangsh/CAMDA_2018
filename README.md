@@ -17,9 +17,9 @@ Key dates:
 
 Use the following method to download raw and processed data:
 
-## CMap Drug safety 
+## 1. CMap Drug safety 
 
-### Introduction
+### 1.1. Introduction
 
   - Predict drug-induced liver injury (DILI)
   - 276 drug compounds
@@ -36,7 +36,7 @@ Use the following method to download raw and processed data:
   - Identification/interpretation of difference between cell lines
   - Option to participate an FDA meta-analysis paper
 
-### Data
+### 1.2. Data
 
 The .CEL files of Affymetrix microarrays of 2 different cell lines were processed separately as described [here](https://github.com/zhezhangsh/MyMethods/blob/master/microarray_affymatrix_typical.md). Most compounds used HT_HG-U133A array platform, but small number of training compounds used HG-U133A. Sample analysis showed that data from different platforms are not directly comparable. As a result, 10 compounds were removed from the training data, and there will be **180** total training compounds: (**120** positive + **60** negative), and **86** validation compounds.
   
@@ -51,9 +51,9 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
   - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view online](CMap/R/vehicle_count.csv) or [download](CMap/R/vehicle2cel.rds).
 
 
-## Cancer Data Integration 
+## 2. Cancer Data Integration 
 
-### Introduction
+### 2.1. Introduction
 
   - Breast Cancer (Re-analyze METABRIC data):
     - 5 subtypes
@@ -77,7 +77,7 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
     - Understand progression or therapy response better
     - Improve cancer subgrouping
 
-### Data
+### 2.2. Data
 
 #### Neuroblastoma
 
@@ -96,7 +96,7 @@ Data were downloaded from CAMDA and GEO websites and formatted as R objects.
   - CNV-expression mapping: [view online](Cancer/NB/R/aCGH/SEQC2aCGH.csv) or [download](Cancer/NB/R/aCGH/SEQC2aCGH.rds). 
 
 
-### Results
+### 2.3. Results
 
   - Sample analysis: subgroups, PCA, CNV calls, etc. [download](Cancer/NB/Result/sample_analysis.zip). 
 
