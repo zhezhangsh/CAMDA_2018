@@ -46,9 +46,9 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
   - Processed microarray data matrix of 475 samples from PC3 cells: [download]().
   - Annotation of 12,080 NCBI Entrez genes: [download]().
   - Annotation of 266 compounds: [download]().
-  - Annotation of 582 MCF7 .CEL files: [view]() or [download]().
-  - Annotation of 475 PC3 .CEL files: [view]() or [download]().
-  - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view]()
+  - Annotation of 582 MCF7 .CEL files: [view online]() or [download]().
+  - Annotation of 475 PC3 .CEL files: [view online]() or [download]().
+  - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view online](CMap/R/vehicle_count.csv)
   
 ### Results
 
@@ -79,6 +79,19 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
     - Improve cancer subgrouping
 
 ### Data
+
+#### Neuroblastoma
+
+Data were downloaded from CAMDA and GEO websites and formatted as R objects.
+
+***Download:***
+
+  - Sample characteristics: [view online]() or [download]().
+  - Sample metadata: [view online]() or [download]().
+  - Gene expression, GSE49711 (RNA-seq): [download]().
+  - Gene expression, GSE62564 (RNA-seq): [download]().
+  - Gene expression, GSE49710 (microarray): [download]().
+  - 
 
 
 ### Results
