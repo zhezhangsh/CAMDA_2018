@@ -42,15 +42,18 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
   
 ***Download:***
 
-  - Processed microarray data matrix of 582 samples from MCF7 cells: [download]().
-  - Processed microarray data matrix of 475 samples from PC3 cells: [download]().
-  - Annotation of 12,080 NCBI Entrez genes: [download]().
-  - Annotation of 266 compounds: [download]().
-  - Annotation of 582 MCF7 .CEL files: [view online]() or [download]().
-  - Annotation of 475 PC3 .CEL files: [view online]() or [download]().
-  - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view online](CMap/R/vehicle_count.csv)
+  - Processed microarray data matrix of 582 samples from MCF7 cells: [download](CMap/R/expr_MCF7.rds).
+  - Processed microarray data matrix of 475 samples from PC3 cells: [download](CMap/R/expr_PC3.rds).
+  - Annotation of 12,080 NCBI Entrez genes: [view online]() or [download](CMap/R/anno_gene.rds).
+  - Annotation of 266 compounds: [view online](CMap/R/anno_compound.csv) or [download](CMap/R/anno_compound.rds).
+  - Annotation of 582 MCF7 .CEL files: [view online](CMap/R/anno_cel_MCF7.csv) or [download](CMap/R/anno_cel_MCF7.rds).
+  - Annotation of 475 PC3 .CEL files: [view online](CMap/R/anno_cel_PC3.csv) or [download](CMap/R/anno_cel_PC3.rds).
+  - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view online](CMap/R/vehicle_count.csv) or [download](CMap/R/vehicle2cel.rds).
   
 ### Results
+
+https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds
+https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds
 
 ## Cancer Data Integration 
 

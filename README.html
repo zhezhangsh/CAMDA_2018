@@ -166,17 +166,18 @@ $(document).ready(function () {
 <p>The .CEL files of Affymetrix microarrays of 2 different cell lines were processed separately as described <a href="https://github.com/zhezhangsh/MyMethods/blob/master/microarray_affymatrix_typical.md">here</a>. Most compounds used HT_HG-U133A array platform, but small number of training compounds used HG-U133A. Sample analysis showed that data from different platforms are not directly comparable. As a result, 10 compounds were removed from the training data, and there will be <strong>180</strong> total training compounds: (<strong>120</strong> positive + <strong>60</strong> negative), and <strong>86</strong> validation compounds.</p>
 <p><strong><em>Download:</em></strong></p>
 <ul>
-<li>Processed microarray data matrix of 582 samples from MCF7 cells: <a href>download</a>.</li>
-<li>Processed microarray data matrix of 475 samples from PC3 cells: <a href>download</a>.</li>
-<li>Annotation of 12,080 NCBI Entrez genes: <a href>download</a>.</li>
-<li>Annotation of 266 compounds: <a href>download</a>.</li>
-<li>Annotation of 582 MCF7 .CEL files: <a href>view online</a> or <a href>download</a>.</li>
-<li>Annotation of 475 PC3 .CEL files: <a href>view online</a> or <a href>download</a>.</li>
-<li>Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): <a href="CMap/R/vehicle_count.csv">view online</a></li>
+<li>Processed microarray data matrix of 582 samples from MCF7 cells: <a href="CMap/R/expr_MCF7.rds">download</a>.</li>
+<li>Processed microarray data matrix of 475 samples from PC3 cells: <a href="CMap/R/expr_PC3.rds">download</a>.</li>
+<li>Annotation of 12,080 NCBI Entrez genes: <a href>view online</a> or <a href="CMap/R/anno_gene.rds">download</a>.</li>
+<li>Annotation of 266 compounds: <a href="CMap/R/anno_compound.csv">view online</a> or <a href="CMap/R/anno_compound.rds">download</a>.</li>
+<li>Annotation of 582 MCF7 .CEL files: <a href="CMap/R/anno_cel_MCF7.csv">view online</a> or <a href="CMap/R/anno_cel_MCF7.rds">download</a>.</li>
+<li>Annotation of 475 PC3 .CEL files: <a href="CMap/R/anno_cel_PC3.csv">view online</a> or <a href="CMap/R/anno_cel_PC3.rds">download</a>.</li>
+<li>Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): <a href="CMap/R/vehicle_count.csv">view online</a> or <a href="CMap/R/vehicle2cel.rds">download</a>.</li>
 </ul>
 </div>
 <div id="results" class="section level3">
 <h3>Results</h3>
+<p><a href="https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds" class="uri">https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds</a> <a href="https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds" class="uri">https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds</a></p>
 </div>
 </div>
 <div id="cancer-data-integration" class="section level2">
