@@ -30,7 +30,7 @@ Use the following method to download raw and processed data:
   - 1095 expression arrays
   - Vehicle control vs. compound-treated
 
-**Analysis suggestions:**
+***Analysis suggestions:***
 
   - Prediction of DILI
   - Identification/interpretation of difference between cell lines
@@ -65,7 +65,7 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
     - Expression array, RNA-seq, and clinical metadata
     - Matched aCGH copy number data of 145 patients
 
-**Analysis suggestions:**
+***Analysis suggestions:***
 
   - Technical
     - Horizontal integration: expression + CNV + clinical
@@ -79,7 +79,7 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
 
 ### 2.2. Data
 
-#### Neuroblastoma
+#### A. Neuroblastoma
 
 Data were downloaded from CAMDA and GEO websites and formatted as R objects.
 
