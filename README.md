@@ -49,11 +49,7 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
   - Annotation of 582 MCF7 .CEL files: [view online](CMap/R/anno_cel_MCF7.csv) or [download](CMap/R/anno_cel_MCF7.rds).
   - Annotation of 475 PC3 .CEL files: [view online](CMap/R/anno_cel_PC3.csv) or [download](CMap/R/anno_cel_PC3.rds).
   - Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): [view online](CMap/R/vehicle_count.csv) or [download](CMap/R/vehicle2cel.rds).
-  
-### Results
 
-https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds
-https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds
 
 ## Cancer Data Integration 
 
@@ -89,15 +85,18 @@ Data were downloaded from CAMDA and GEO websites and formatted as R objects.
 
 ***Download:***
 
-  - Sample characteristics: [view online]() or [download]().
-  - Sample metadata: [view online]() or [download]().
-  - Gene expression, GSE49711 (RNA-seq): [download]().
-  - Gene expression, GSE62564 (RNA-seq): [download]().
-  - Gene expression, GSE49710 (microarray): [download]().
-  - 
+  - Sample characteristics: [view online](Cancer/NB/R/clinical.csv) or [download](Cancer/NB/R/clinical.rds).
+  - Sample metadata: [view online](Cancer/NB/R/sample_metadata.csv) or [download](Cancer/NB/R/sample_metadata.rds).
+  - Gene expression, GSE49711 (RNA-seq): [download](Cancer/NB/R/expression/GSE49711/expr_gene.rds).
+  - Gene expression, GSE62564 (RNA-seq): [download](Cancer/NB/R/expression/GSE62564/expr.rds).
+  - Gene expression, GSE49710 (microarray): [download](Cancer/NB/R/expression/GSE49710/expr.rds).
+  - CNV-aCGH, series summary: [view online](Cancer/NB/R/aCGH/cnv_meta.csv) or [download](Cancer/NB/R/aCGH/cnv_meta.rds).  
+  - CNV-aCGH, data matrix (all series): [download](Cancer/NB/R/aCGH/cnv_all.rds).
+  - CNV-aCGH, annotation (all series): [download](Cancer/NB/R/aCGH/anno_all.rds).
+  - CNV-expression mapping: [view online](Cancer/NB/R/aCGH/SEQC2aCGH.csv) or [download](Cancer/NB/R/aCGH/SEQC2aCGH.rds). 
 
 
 ### Results
 
-#### Sample analysis
+  - Sample analysis: subgroups, PCA, CNV calls, etc. [download](Cancer/NB/Result/sample_analysis.zip). 
 

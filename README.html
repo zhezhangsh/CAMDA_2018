@@ -175,10 +175,6 @@ $(document).ready(function () {
 <li>Annotation of 103 buffer vehicles (61 MCF7 + 42 PC3): <a href="CMap/R/vehicle_count.csv">view online</a> or <a href="CMap/R/vehicle2cel.rds">download</a>.</li>
 </ul>
 </div>
-<div id="results" class="section level3">
-<h3>Results</h3>
-<p><a href="https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds" class="uri">https://github.com/zhezhangsh/CAMDA_2018/raw/master/CMap/R/vehicle2cel.rds</a> <a href="https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds" class="uri">https://github.com/zhezhangsh/CAMDA_2018/blob/master/CMap/R/vehicle2cel.rds</a></p>
-</div>
 </div>
 <div id="cancer-data-integration" class="section level2">
 <h2>Cancer Data Integration</h2>
@@ -221,20 +217,24 @@ $(document).ready(function () {
 <p>Data were downloaded from CAMDA and GEO websites and formatted as R objects.</p>
 <p><strong><em>Download:</em></strong></p>
 <ul>
-<li>Sample characteristics: <a href>view online</a> or <a href>download</a>.</li>
-<li>Sample metadata: <a href>view online</a> or <a href>download</a>.</li>
-<li>Gene expression, GSE49711 (RNA-seq): <a href>download</a>.</li>
-<li>Gene expression, GSE62564 (RNA-seq): <a href>download</a>.</li>
-<li>Gene expression, GSE49710 (microarray): <a href>download</a>.</li>
-<li></li>
+<li>Sample characteristics: <a href="Cancer/NB/R/clinical.csv">view online</a> or <a href="Cancer/NB/R/clinical.rds">download</a>.</li>
+<li>Sample metadata: <a href="Cancer/NB/R/sample_metadata.csv">view online</a> or <a href="Cancer/NB/R/sample_metadata.rds">download</a>.</li>
+<li>Gene expression, GSE49711 (RNA-seq): <a href="Cancer/NB/R/expression/GSE49711/expr_gene.rds">download</a>.</li>
+<li>Gene expression, GSE62564 (RNA-seq): <a href="Cancer/NB/R/expression/GSE62564/expr.rds">download</a>.</li>
+<li>Gene expression, GSE49710 (microarray): <a href="Cancer/NB/R/expression/GSE49710/expr.rds">download</a>.</li>
+<li>CNV-aCGH, series summary: <a href="Cancer/NB/R/aCGH/cnv_meta.csv">view online</a> or <a href="Cancer/NB/R/aCGH/cnv_meta.rds">download</a>.<br />
+</li>
+<li>CNV-aCGH, data matrix (all series): <a href="Cancer/NB/R/aCGH/cnv_all.rds">download</a>.</li>
+<li>CNV-aCGH, annotation (all series): <a href="Cancer/NB/R/aCGH/anno_all.rds">download</a>.</li>
+<li>CNV-expression mapping: <a href="Cancer/NB/R/aCGH/SEQC2aCGH.csv">view online</a> or <a href="Cancer/NB/R/aCGH/SEQC2aCGH.rds">download</a>.</li>
 </ul>
 </div>
 </div>
-<div id="results-1" class="section level3">
+<div id="results" class="section level3">
 <h3>Results</h3>
-<div id="sample-analysis" class="section level4">
-<h4>Sample analysis</h4>
-</div>
+<ul>
+<li>Sample analysis: subgroups, PCA, CNV calls, etc. <a href="Cancer/NB/Result/sample_analysis.zip">download</a>.</li>
+</ul>
 </div>
 </div>
 </div>
