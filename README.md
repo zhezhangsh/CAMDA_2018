@@ -44,7 +44,7 @@ The .CEL files of Affymetrix microarrays of 2 different cell lines were processe
 
   - Processed microarray data matrix of 582 samples from MCF7 cells: [download](CMap/R/expr_MCF7.rds).
   - Processed microarray data matrix of 475 samples from PC3 cells: [download](CMap/R/expr_PC3.rds).
-  - Annotation of 12,080 NCBI Entrez genes: [view online](CMap/R/anno_gene.csv) or [download](CMap/R/anno_gene.rds).
+  - Annotation of 12,080 NCBI Entrez genes: [view online](https://raw.githubusercontent.com/zhezhangsh/CAMDA_2018/master/CMap/R/anno_gene.csv) or [download](CMap/R/anno_gene.rds).
   - Annotation of 266 compounds: [view online](CMap/R/anno_compound.csv) or [download](CMap/R/anno_compound.rds).
   - Annotation of 582 MCF7 .CEL files: [view online](CMap/R/anno_cel_MCF7.csv) or [download](CMap/R/anno_cel_MCF7.rds).
   - Annotation of 475 PC3 .CEL files: [view online](CMap/R/anno_cel_PC3.csv) or [download](CMap/R/anno_cel_PC3.rds).
